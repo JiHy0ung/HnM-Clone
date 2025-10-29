@@ -9,9 +9,24 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ authenticate, setAuthenticate }) => {
   const menuList = ["All", "woman", "man", "kids"];
+  const navigate = useNavigate();
+
+  const goToLogin = () => {
+    if (authenticate) {
+      setAuthenticate(false);
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const goToLanding = () => {
+    navigate("/");
+  };
+
   return (
     <div>
       <Box
@@ -33,6 +48,7 @@ const NavBar = () => {
           <TextField variant="standard" placeholder="search"></TextField>
         </Box>
         <Button
+          onClick={goToLogin}
           disableRipple
           sx={{
             display: "flex",
@@ -49,14 +65,16 @@ const NavBar = () => {
             variant="p"
             sx={{ fontFamily: "Pretendard", fontWeight: 400, color: "#010101" }}
           >
-            로그인
+            {authenticate ? "로그아웃" : "로그인"}
           </Typography>
           <CircleUserRound strokeWidth={1.5} color="#010101" />
         </Button>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <img
+          onClick={goToLanding}
           width={100}
+          style={{ cursor: "pointer" }}
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1200px-H%26M-Logo.svg.png"
         />
       </Box>
