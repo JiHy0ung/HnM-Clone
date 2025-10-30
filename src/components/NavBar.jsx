@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { CircleUserRound, Search } from "lucide-react";
 import { Box } from "@mui/system";
 import {
   Button,
+  Drawer,
   List,
   ListItem,
   ListItemText,
@@ -12,7 +13,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
-  const menuList = ["All", "woman", "man", "kids"];
+  const [open, setOpen] = useState(false);
+  const menuList = ["ALL", "WOMEN", "MEN", "KIDS"];
   const navigate = useNavigate();
 
   const goToLogin = () => {
@@ -30,8 +32,12 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
   const search = (e) => {
     if (e.key === "Enter") {
       let keyword = e.target.value;
-      navigate(`/?q=${keyword}`);
+      navigate(`products/?q=${keyword}`);
     }
+  };
+
+  const toggleDrawer = (newOpen) => {
+    setOpen(newOpen);
   };
 
   return (
@@ -51,12 +57,19 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
             gap: 1,
           }}
         >
-          <Search color="#010101" />
-          <TextField
-            variant="standard"
-            placeholder="search"
-            onKeyDown={(e) => search(e)}
-          ></TextField>
+          <Search onClick={() => toggleDrawer(true)} color="#010101" />
+          <Drawer
+            anchor="right"
+            open={open}
+            onClose={() => toggleDrawer(false)}
+          >
+            <TextField
+              variant="standard"
+              placeholder="search"
+              onKeyDown={(e) => search(e)}
+              sx={{ m: 4 }}
+            ></TextField>
+          </Drawer>
         </Box>
         <Button
           onClick={goToLogin}
