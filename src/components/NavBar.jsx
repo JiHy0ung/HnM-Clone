@@ -27,6 +27,13 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     navigate("/");
   };
 
+  const search = (e) => {
+    if (e.key === "Enter") {
+      let keyword = e.target.value;
+      navigate(`/?q=${keyword}`);
+    }
+  };
+
   return (
     <div>
       <Box
@@ -45,7 +52,11 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
           }}
         >
           <Search color="#010101" />
-          <TextField variant="standard" placeholder="search"></TextField>
+          <TextField
+            variant="standard"
+            placeholder="search"
+            onKeyDown={(e) => search(e)}
+          ></TextField>
         </Box>
         <Button
           onClick={goToLogin}

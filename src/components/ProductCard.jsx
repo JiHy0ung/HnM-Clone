@@ -12,7 +12,26 @@ const ProductCard = ({ item }) => {
 
   return (
     <Box onClick={showDetail}>
-      <img width={415} src={item?.img} />
+      <Box
+        sx={{
+          width: 415,
+          overflow: "hidden",
+          cursor: "pointer",
+        }}
+      >
+        <Box
+          component="img"
+          width={415}
+          src={item?.img}
+          sx={{
+            transition: "transform 0.5s ease",
+            display: "block",
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
+          }}
+        />
+      </Box>
       <Typography sx={{ fontSize: 10 }}>
         {item?.choice ? "From the runway" : " "}
       </Typography>
