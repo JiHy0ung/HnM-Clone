@@ -28,12 +28,21 @@ const ProductDetail = () => {
     getProductDetail();
   }, []);
   return (
-    <Container sx={{ display: "flex", justifyContent: "center", gap: 10 }}>
+    <Container
+      sx={{
+        display: "flex",
+        flexDirection: { xs: "column", sm: "row" },
+        justifyContent: "center",
+        gap: { xs: 2, sm: 10 },
+      }}
+    >
       <Box>
         <img src={product?.img} />
       </Box>
       <Box>
-        <Typography>{product?.choice ? "consious choice" : ""}</Typography>
+        <Typography sx={{ mb: 1, color: "#ec0011", fontWeight: 700 }}>
+          {product?.choice ? "consious choice" : ""}
+        </Typography>
         <Typography>{product?.title}</Typography>
         <Typography>{product?.price}</Typography>
         <FormControl fullWidth>
