@@ -36,9 +36,7 @@ const ProductDetail = () => {
         gap: { xs: 2, sm: 10 },
       }}
     >
-      <Box>
-        <img src={product?.img} />
-      </Box>
+      <Box component="img" src={product?.img} />
       <Box>
         <Typography sx={{ mb: 1, color: "#ec0011", fontWeight: 700 }}>
           {product?.choice ? "consious choice" : ""}
