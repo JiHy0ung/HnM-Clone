@@ -47,7 +47,9 @@ const ProductAll = () => {
   if (productList.length === 0) {
     return (
       <Box sx={{ textAlign: "center", mt: 10 }}>
-        <p>상품이 없습니다.</p>
+        <p>
+          <strong>"{query}"</strong> 라는 상품이 없습니다.
+        </p>
       </Box>
     );
   }
