@@ -7,21 +7,21 @@ const ProductCard = ({ item }) => {
   const navigate = useNavigate();
 
   const showDetail = () => {
-    navigate(`product/${item?.id}`);
+    navigate(`/product/${item?.id}`);
   };
 
   return (
     <Box onClick={showDetail}>
       <Box
         sx={{
-          width: 415,
+          width: "100%",
           overflow: "hidden",
           cursor: "pointer",
         }}
       >
         <Box
           component="img"
-          width={415}
+          width="100%"
           src={item?.img}
           sx={{
             transition: "transform 0.5s ease",

@@ -27,7 +27,7 @@ const ProductAll = () => {
     <div>
       <Grid container spacing={1}>
         {productList.map((item, index) => (
-          <Grid key={index} size={3}>
+          <Grid key={index} size={{ xs: 6, sm: 4, md: 3 }}>
             <ProductCard item={item} />
           </Grid>
         ))}

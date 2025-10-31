@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CircleUserRound, LogOut, Search } from "lucide-react";
+import { CircleUserRound, LogOut, Menu, Search } from "lucide-react";
 import { Box } from "@mui/system";
 import {
   Button,
@@ -13,7 +13,8 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
-  const [open, setOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const menuList = ["ALL", "WOMEN", "MEN", "KIDS"];
   const navigate = useNavigate();
 
@@ -40,8 +41,12 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     }
   };
 
-  const toggleDrawer = (newOpen) => {
-    setOpen(newOpen);
+  const toggleSearchDrawer = (newOpen) => {
+    setSearchOpen(newOpen);
+  };
+
+  const toggleMenuDrawer = (newOpen) => {
+    setMenuOpen(newOpen);
   };
 
   return (
@@ -76,11 +81,11 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
               gap: 1,
             }}
           >
-            <Search onClick={() => toggleDrawer(true)} color="#010101" />
+            <Search onClick={() => toggleSearchDrawer(true)} color="#010101" />
             <Drawer
               anchor="right"
-              open={open}
-              onClose={() => toggleDrawer(false)}
+              open={searchOpen}
+              onClose={() => toggleSearchDrawer(false)}
             >
               <TextField
                 variant="standard"
@@ -103,12 +108,41 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
               color="#010101"
             />
           )}
+          <Box sx={{ display: { xs: "flex", sm: "none" } }}>
+            <Menu
+              style={{ cursor: "pointer" }}
+              onClick={() => toggleMenuDrawer(true)}
+              color="#010101"
+            />
+            <Drawer
+              anchor="right"
+              open={menuOpen}
+              onClose={() => toggleMenuDrawer(false)}
+            >
+              {menuList.map((menu, index) => (
+                <Typography
+                  key={index}
+                  sx={{
+                    width: "auto",
+                    mx: 10,
+                    mt: 3,
+                  }}
+                  onClick={menu === "ALL" ? goToProducts : undefined}
+                >
+                  {menu}
+                </Typography>
+              ))}
+            </Drawer>
+          </Box>
         </Box>
       </Box>
       <Box>
         <List
           sx={{
-            display: "flex",
+            display: {
+              xs: "none",
+              sm: "flex",
+            },
             justifyContent: "center",
             alignContent: "center",
           }}
