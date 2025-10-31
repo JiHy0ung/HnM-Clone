@@ -33,7 +33,7 @@ const ProductDetail = () => {
         <img src={product?.img} />
       </Box>
       <Box>
-        <Typography>{product?.choice ? "From the runway" : ""}</Typography>
+        <Typography>{product?.choice ? "consious choice" : ""}</Typography>
         <Typography>{product?.title}</Typography>
         <Typography>{product?.price}</Typography>
         <FormControl fullWidth>

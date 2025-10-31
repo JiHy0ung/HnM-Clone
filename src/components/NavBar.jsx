@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CircleUserRound, Search } from "lucide-react";
+import { CircleUserRound, LogOut, Search } from "lucide-react";
 import { Box } from "@mui/system";
 import {
   Button,
@@ -29,6 +29,10 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     navigate("/");
   };
 
+  const goToProducts = () => {
+    navigate("/products");
+  };
+
   const search = (e) => {
     if (e.key === "Enter") {
       let keyword = e.target.value;
@@ -46,61 +50,60 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          marginBottom: 4,
+          m: 2,
         }}
       >
+        <Box
+          component="img"
+          onClick={goToLanding}
+          width={50}
+          style={{ cursor: "pointer" }}
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1200px-H%26M-Logo.svg.png"
+        />
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
-            alignContent: "center",
-            gap: 1,
+            alignItems: "center",
+            gap: 2,
           }}
         >
-          <Search onClick={() => toggleDrawer(true)} color="#010101" />
-          <Drawer
-            anchor="right"
-            open={open}
-            onClose={() => toggleDrawer(false)}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignContent: "center",
+              gap: 1,
+            }}
           >
-            <TextField
-              variant="standard"
-              placeholder="search"
-              onKeyDown={(e) => search(e)}
-              sx={{ m: 4 }}
-            ></TextField>
-          </Drawer>
+            <Search onClick={() => toggleDrawer(true)} color="#010101" />
+            <Drawer
+              anchor="right"
+              open={open}
+              onClose={() => toggleDrawer(false)}
+            >
+              <TextField
+                variant="standard"
+                placeholder="search"
+                onKeyDown={(e) => search(e)}
+                sx={{ m: 4 }}
+              ></TextField>
+            </Drawer>
+          </Box>
+          {authenticate ? (
+            <LogOut
+              style={{ cursor: "pointer" }}
+              onClick={goToLogin}
+              color="#010101"
+            />
+          ) : (
+            <CircleUserRound
+              style={{ cursor: "pointer" }}
+              onClick={goToLogin}
+              color="#010101"
+            />
+          )}
         </Box>
-        <Button
-          onClick={goToLogin}
-          disableRipple
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignContent: "center",
-            gap: 0.5,
-            backgroundColor: "transparent",
-            "&:hover": { backgroundColor: "none" },
-            "&:active": { backgroundColor: "none" },
-            "&:focus": { outline: "none" },
-          }}
-        >
-          <Typography
-            variant="p"
-            sx={{ fontFamily: "Pretendard", fontWeight: 400, color: "#010101" }}
-          >
-            {authenticate ? "로그아웃" : "로그인"}
-          </Typography>
-          <CircleUserRound strokeWidth={1.5} color="#010101" />
-        </Button>
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <img
-          onClick={goToLanding}
-          width={100}
-          style={{ cursor: "pointer" }}
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1200px-H%26M-Logo.svg.png"
-        />
       </Box>
       <Box>
         <List
@@ -117,6 +120,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                 width: "auto",
                 "&:hover": { textDecoration: "underline", cursor: "pointer" },
               }}
+              onClick={menu === "ALL" ? goToProducts : undefined}
             >
               <ListItemText primary={menu} />
             </ListItem>

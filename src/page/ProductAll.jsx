@@ -16,7 +16,7 @@ const ProductAll = () => {
 
     console.log(searchQuery);
 
-    let url = `https://my-json-server.typicode.com/JiHy0ung/Givenchy-Clone/products?q=${searchQuery}`;
+    let url = `https://my-json-server.typicode.com/JiHy0ung/HnM-Clone/products?q=${searchQuery}`;
     let response = await fetch(url);
     let data = await response.json();
 

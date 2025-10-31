@@ -32,8 +32,10 @@ const ProductCard = ({ item }) => {
           }}
         />
       </Box>
-      <Typography sx={{ fontSize: 10 }}>
-        {item?.choice ? "From the runway" : " "}
+      <Typography
+        sx={{ mt: 1, fontSize: 10, color: "#ec0011", fontWeight: 700 }}
+      >
+        {item?.choice ? "consious choice" : " "}
       </Typography>
       <Typography sx={{ fontSize: 12 }}>{item?.title}</Typography>
       <Typography sx={{ fontSize: 12 }}>₩ {item?.price}</Typography>
