@@ -18,7 +18,7 @@ const Landing = () => {
             xs: 2.2,
           },
         }}
-        src="https://image.hm.com/content/dam/hm/TOOLBOX/Local%20Activities/2024_s09/october_2025/Member-Days-16x9-test.jpg?imwidth=4800"
+        src="/landing.avif"
       />
       <Typography
         sx={{

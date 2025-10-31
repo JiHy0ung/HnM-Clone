@@ -58,7 +58,7 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
           onClick={goToLanding}
           width={50}
           style={{ cursor: "pointer" }}
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/H%26M-Logo.svg/1200px-H%26M-Logo.svg.png"
+          src="/H&M-Logo.svg.png"
         />
         <Box
           sx={{
